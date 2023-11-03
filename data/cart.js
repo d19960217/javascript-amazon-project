@@ -4,11 +4,12 @@ if(!cart){
   cart=[{
     productId:'e43638ce-6aa0-4b85-b27f-e1d07eb678c6',
     quantity: 2,
-    deliveryOPtionId:'1'
-  },{
+    deliveryOptionId:'1'  
+  },
+  {
       productId:'15b6fc6f-327a-4ec4-896f-486349e85a3d',
       quantity: 1,
-      deliveryOPtionId:'2' 
+      deliveryOptionId:'2' 
   }];
 }
 
@@ -27,15 +28,17 @@ export function addToCart(productId){
    //判断相同按钮后加1
    if(matchingItem){
     matchingItem.quantity+=1;
+    matchingItem.deliveryOptionId=1;
    }else{
     cart.push(
       {productId:productId,
         quantity: 1,
-        deliveryOPtionId:'1'
+        deliveryOptionId:'1'
       }
     );
    }
 
+  /* localStorage.clear(); */
   saveToStorage();
 }
 
@@ -48,4 +51,17 @@ export function addToCart(productId){
   });
 cart = newCart;
 saveToStorage();
+}
+
+export function updateDeliveryOption(productId,deliveryOptionId){
+  let matchingItem;
+  cart.forEach((cartItem)=>{
+    if(productId===cartItem.productId){
+     matchingItem =cartItem;
+    }
+   }); 
+
+   matchingItem.deliveryOptionId=deliveryOptionId;
+  saveToStorage();
+  
 }
