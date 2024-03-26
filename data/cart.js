@@ -28,7 +28,7 @@ export function addToCart(productId){
    //判断相同按钮后加1
    if(matchingItem){
     matchingItem.quantity+=1;
-    matchingItem.deliveryOptionId=1;
+  
    }else{
     cart.push(
       {productId:productId,
